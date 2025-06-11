@@ -1,3 +1,4 @@
+require 'geocoder'
 class ForecastAddressService < ApplicationService
   attr_reader :address
 
