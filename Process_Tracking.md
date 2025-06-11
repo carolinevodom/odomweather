@@ -6,12 +6,14 @@ Preface: This file exists to act as a place to store/track the various objective
 
 * Set up DB Objects
   * DB Object in question should store weather conditions, zip code, created at, updated at.
+  - generated scaffold for class "WeatherForecast" to create files, will weed unnecessary files and migrate in additional fields as necessary.
+  - 
 
 * Set Up Input UI
   * UI Should take in Street Address, City, State, Zip, Country (Maybe drop-down for country? Or two partials y/n "Is a US Address?) Start with US Address Portion
 
 * US Address process
-  * Take in address, filter down to zip code
+  * Take in address, filter down to zip code (if not just a zip)
   * Potentially Transform Address to Latitude/Longitude (if using Google Weather API)
   * Request from API Weather Data for given address
   * Return Weather Data on Page
