@@ -32,12 +32,13 @@ SETUP:
   `touch .env`
   Within the file generated/located above, add in your own GEOAPIFY API Key via the following line
   `GEOAPIFY_API_KEY = your_api_key_here`
-  *Documentation on the Geoapify API for geocoding, as well as the necessary link to generate an API key, can be found at https://apidocs.geoapify.com/docs/geocoding/
+  * Documentation on the Geoapify API for geocoding, as well as the necessary link to generate an API key, can be found at https://apidocs.geoapify.com/docs/geocoding/
   (Note: GEOAPIFY API at the free tier allows for a maximum of 3,000 requests per day. This would be a potential concern in a real production app, but is more than adequate for a test scenario.)
   * Documentation on the Google Maps Weather API useage, as well as the link to create a project and API key, can be found at https://developers.google.com/maps/documentation/weather/get-api-key
   (Note: The Google Maps API at the free tier allows for a maximum of 1000 requests per day. This is another potential concern in a real production app, but is more than adequeate for this scenario.)
 
-
+  Run locally within a rails server 
+  `rails s`
 
 
 Performance Considerations:
