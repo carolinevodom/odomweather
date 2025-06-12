@@ -1,5 +1,8 @@
 require 'geocoder'
 class ForecastAddressService < ApplicationService
+  # This service is responsible for determining the zip code for caching, plus the latitude and longitude for the weather forecast API
+  # It takes an address as input, which can be either a zip code or a full address
+  # The address is passed in as a string, so we can use it directly in the geocoding service
   attr_reader :address
 
   def initialize(address)
@@ -8,24 +11,33 @@ class ForecastAddressService < ApplicationService
 
 
   # Determines the zip code for the forecast
-  # If the address is a zip code, we can use it directly 
-  # If the address is a full address, we use a geocoding service to get the zip code
+  # We pass whatever address is given to us to the geocoding service
+  # We can then take from the geocoding service the zip code, latitude, and longitude, since that's all we need.
   # Either way, we return the zip code, latitude, and longitude as a hash
     # Latitude and Longitude are necessary for the weather forecast API, and will come from the geocoding service if the address is not a zip code
-  def call(address)
+  def call
     forecast_data = {}
 
-    coordinates = Geocoder.search(address).first
-    #The GEOAPIFY service can look up via both zip codes and full addresses
+    coordinates = Geocoder.search(@address).first
+    # The GEOAPIFY service can look up via both zip codes and full addresses
     # It does not require any specific address format
+    # It returns the most likely result as the first item in the json response, so we'll just take it
+  
 
     if coordinates
-      # Need to look at the data structure returned by the geocoding service to grab just what we want
+      # The relevant structure for the GEOAPIFY response can be found in the documentation
+      # https://apidocs.geoapify.com/docs/geocoding/
+      forecast_data[:zip] = coordinates.data['properties']['postcode'] 
+      forecast_data[:latitude] = coordinates.data['properties']['lat'].to_s
+      forecast_data[:longitude] = coordinates.data['properties']['lon'].to_s
+      # We need the latitude and longitude as strings for the weather forecast API
+      # Zip comes back from the API as a string already
+      return forecast_data
     else
       raise "Invalid address or unable to geocode"
+      return false
     end
 
-    forecast_data
   end
 
 end
