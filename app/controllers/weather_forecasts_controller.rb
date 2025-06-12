@@ -31,11 +31,9 @@ class WeatherForecastsController < ApplicationController
     forecastable_address = ForecastAddressService.call(input_address)
 
     # If the ForecastAddressService returns false, we need to fail to proceed
-    unless forecastable_address
-      respond_to do |format|
-         format.html { render :new, status: :unprocessable_entity }
-         format.json { render json: @weather_forecast.errors, status: :unprocessable_entity }
-      end
+    if forecastable_address == false
+      redirect_to new_weather_forecast_url, alert: "Invalid address. Please enter a valid zip code or address."
+      return
     end
 
 

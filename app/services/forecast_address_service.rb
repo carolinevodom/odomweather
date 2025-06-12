@@ -34,7 +34,6 @@ class ForecastAddressService < ApplicationService
       # Zip comes back from the API as a string already
       return forecast_data
     else
-      raise "Invalid address or unable to geocode"
       return false
     end
 
