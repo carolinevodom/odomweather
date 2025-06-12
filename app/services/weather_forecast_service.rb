@@ -13,12 +13,10 @@ class WeatherForecastService < ApplicationService
   end
 
   def call
-    puts 'in the API call'
     #Here we call the API to actually get the weather forecast data
 
     api_response = RestClient.get(build_url)
     weather_data = JSON.parse(api_response.body)
-    puts "Weather data received: #{weather_data}"
     # For this first iteration, we just want the current temp + daily high and low
     return weather_data
   end

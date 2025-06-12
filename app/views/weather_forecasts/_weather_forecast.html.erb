@@ -1,0 +1,40 @@
+<div id="<%= @weather_forecast %>">
+  <h1>
+    <strong> Weather Forecast for Zip Code:</strong>
+    <%= @zip %>
+  </h1>
+
+  <h3>
+    <strong>Current Temperature:</strong>
+    <%= @weather_forecast['temperature']['degrees'] %>°F
+  </h3>
+
+  <h3>
+    <strong>Condition:</strong>
+    <%= @weather_forecast['weatherCondition']['description']['text'] %>
+  </h3>
+
+  <h3>
+    <strong>Humidity:</strong>
+    <%= @weather_forecast['relativeHumidity'] %>%
+  </h3>
+
+  <h3>
+    <strong>High Today:</strong>
+    <%= @weather_forecast['currentConditionsHistory']['maxTemperature']['degrees'] %>°F
+  </h3>
+  
+   <h3>
+    <strong>Low Today:</strong>
+    <%= @weather_forecast['currentConditionsHistory']['minTemperature']['degrees'] %>°F
+  </h3>
+
+  <h4>
+    <% if @cached == true %>
+      <%= "Read from Cache" %>
+    <% else %>
+      <%= "Read from API" %>
+    <% end %>
+  </h4>
+
+</div>

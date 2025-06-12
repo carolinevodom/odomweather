@@ -1,0 +1,23 @@
+<%= form_with(model: weather_forecast) do |form| %>
+  <% if weather_forecast.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(weather_forecast.errors.count, "error") %> prohibited this weather_forecast from being saved:</h2>
+
+      <ul>
+        <% weather_forecast.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <h2> Enter Your Address or Zip Code </h2>
+    <% form.label :address, style: "display: block;" %>
+    <%= form.text_field :address, placeholder: "e.g., 123 Main St, Springfield, IL" %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

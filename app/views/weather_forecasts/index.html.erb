@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% # We can't be 100% certain there's a valid weather forecast in the cache, since someone could choose to refresh the page. %>
+<% # In this case, we'll display the weather forecast if it exists, or a message prompting the user to enter their address or zip code.  %>
+<% if @weather_forecast.present? %>
+  <%= render 'weather_forecast' %>
+<% else %>
+  <h2>No Weather Forecast Available</h2>
+  <p>Please click the link below to generate a weather forecast for your address.</p>
+<% end %>
+
+<div>
+  
+  <%= link_to "New Weather Forecast", new_weather_forecast_url %>
+
+</div>

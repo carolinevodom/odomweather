@@ -44,25 +44,6 @@ Performance Considerations:
   * The application does make an api call to the geocoder every time an address is input. This is not ideal, but does keep us from requiring any dedicated database space. 
     - A spike could be considered into storing the latitude/longitude data for commonly requested zip codes to reduce the amount of api calls. 
 
-
-
-
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Test Coverage:
+  The Test Suite is entirely composed of minitests, and can be run using:
+  `bundle exec rake test`
